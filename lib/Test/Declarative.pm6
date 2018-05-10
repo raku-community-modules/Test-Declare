@@ -124,11 +124,22 @@ method test-status() {
 }
 method test-return-value() {
     if ($!expectations.return-value) {
-        is($!result.return-value, $!expectations.return-value, self.name ~ ' - return value');
+        is-deeply(
+            $!result.return-value,
+            $!expectations.return-value,
+            self.name ~ ' - return value'
+        );
     }
     elsif ($!result.return-value && self.debug) {
         diag self.name ~ ' - got untested return value ->';
         diag '   ' ~ $!result.return-value;
+    }
+    if ($!expectations.mutates) {
+        is-deeply(
+            |$!callable.args,
+            $!expectations.mutates,
+            self.name ~ ' - mutates'
+        );
     }
 }
 

@@ -1,5 +1,12 @@
 use v6.c;
 
+class T::Mutation {
+    method increment-all(Array $arr) {
+        $arr.map: *++;
+        return;
+    }
+}
+
 class T::Math {
     has Int $.num;
 
@@ -28,6 +35,13 @@ class T::Math {
         note self.as-word();
     }
 }
+
+class T::Complex {
+    method generate-complex(Int $i) returns T::Math {
+        return T::Math.new(num => $i);
+    }
+}
+
 
 class T::NoConstruct {
     has Int $.num is rw;

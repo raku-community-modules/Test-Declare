@@ -5,6 +5,7 @@ class Test::Declarative::Expectations {
     has Str $.stderr;
 
     has Any $.return-value;
+    has Any $.mutates;
 
     has Bool $.lives;
     has Bool $.dies;
