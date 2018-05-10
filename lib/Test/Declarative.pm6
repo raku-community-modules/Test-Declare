@@ -17,7 +17,7 @@ Test::Declarative - Declare common test scenarios as data.
         ${
             name => 'multiply',
             call => {
-                class => 'Module::Under::Test::Int',
+                class => 'Module::Under::Test',
                 construct => \(2),
                 method => 'multiply',
             },
@@ -29,7 +29,7 @@ Test::Declarative - Declare common test scenarios as data.
         ${
             name => 'multiply fails',
             call => {
-                class => 'Module::Under::Test::Int',
+                class => 'Module::Under::Test',
                 construct => \(2),
                 method => 'multiply',
             },

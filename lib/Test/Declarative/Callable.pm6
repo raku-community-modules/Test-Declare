@@ -1,11 +1,11 @@
 use v6.c;
 
 class Test::Declarative::Callable {
-    has Str $.class is required;
+    has $.class is required when !*.DEFINITE;
     has Str $.method is required;
     has Capture $.construct;
-    has $.obj = self.construct ?? ::($!class).new(|self.construct)
-                               !! ::($!class).new();
+    has $.obj = self.construct ?? ($!class).new(|self.construct)
+                               !! ($!class).new();
 
     has $.args is rw;
 

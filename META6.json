@@ -4,7 +4,7 @@
   ],
   "build-depends" : [ ],
   "depends" : [ ],
-  "description" : "declare common test scenarios as data.",
+  "description" : "Declare common test scenarios as data.",
   "license" : "Artistic-2.0",
   "name" : "Test::Declarative",
   "perl" : "6.c",

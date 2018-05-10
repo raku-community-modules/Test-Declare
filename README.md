@@ -1,7 +1,7 @@
 NAME
 ====
 
-Test::Declarative - declare common test scenarios as data.
+Test::Declarative - Declare common test scenarios as data.
 
 SYNOPSIS
 ========
@@ -14,7 +14,7 @@ SYNOPSIS
         ${
             name => 'multiply',
             call => {
-                class => 'Module::Under::Test::Int',
+                class => 'Module::Under::Test',
                 construct => \(2),
                 method => 'multiply',
             },
@@ -26,7 +26,7 @@ SYNOPSIS
         ${
             name => 'multiply fails',
             call => {
-                class => 'Module::Under::Test::Int',
+                class => 'Module::Under::Test',
                 construct => \(2),
                 method => 'multiply',
             },
