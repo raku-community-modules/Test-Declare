@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/darrenf/p6-test-declarative.svg?branch=master)](https://travis-ci.org/darrenf/p6-test-declarative)
+
 NAME
 ====
 
@@ -14,7 +16,7 @@ SYNOPSIS
         ${
             name => 'multiply',
             call => {
-                class => 'Module::Under::Test',
+                class => Module::Under::Test,
                 construct => \(2),
                 method => 'multiply',
             },
@@ -26,7 +28,7 @@ SYNOPSIS
         ${
             name => 'multiply fails',
             call => {
-                class => 'Module::Under::Test',
+                class => Module::Under::Test,
                 construct => \(2),
                 method => 'multiply',
             },
@@ -35,12 +37,88 @@ SYNOPSIS
                 dies => True,
             },
         },
+        ${
+            name => 'multiply fails',
+            call => {
+                class => Module::Under::Test,
+                construct => \(2),
+                method => 'multiply',
+            },
+            args => \(multiplicand => 8),
+            expected => {
+                return-value => roughly(&[>], 10),
+            },
+        },
     );
 
 DESCRIPTION
 ===========
 
 Test::Declarative is an opinionated framework for writing tests without writing (much) code. The author viscerally hates bugs and strongly believes in the value of tests. Since most tests are code, they are susceptible to bugs, and so this module provides a way to express a wide variety of common testing scenarios purely in a declarative way.
+
+USAGE
+=====
+
+Direct usage of this module is via the exported subroutines `declare` and, maybe, `roughly`.
+
+declare(${ … }, ${ … })
+-----------------------
+
+`declare` takes an array of hashes describing the test scenarios and expectations. Each hash should look like this:
+
+  * name
+
+The name of the test, for developer understanding in the TAP output.
+
+  * call
+
+A hash describing the code to be called.
+
+    * class
+
+The actual concrete class - not a string representation, and not an instance either.
+
+    * method
+
+String name of the method to call.
+
+    * construct
+
+If required, a [Capture](Capture) of the arguments to the class's `new` method.
+
+  * args
+
+If required, a [Capture](Capture) of the arguments to the instance's method.
+
+  * expected
+
+A hash describing the expected behaviour when the method gets called.
+
+    * return-value
+
+The return value of the method, which will be compared to the actual return value via `eqv`.
+
+    * lives/dies/throws
+
+`lives` and `dies` are booleans, expressing simply whether the code should work or not. `throws` should be an Exception type.
+
+    * stdout/stderr
+
+Strings against which the method's output/error streams are compared, using `eqv` (i.e. not a regex).
+
+roughly
+-------
+
+If an exact comparison doesn't suffice for `return-value`, you can use `roughly` to change the test behaviour to something more fuzzy. The syntax is:
+
+    return-value => roughly($operator, $right-hand-side)
+
+For example:
+
+    # I don't know what the value is, only that it's less than 10
+    return-value => roughly(&[<], 10),
+
+`$operator` is typically intended to be one of the builtin infix operators but any [Sub](Sub) which takes 2 positional arguments should do.
 
 AUTHOR
 ======

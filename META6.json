@@ -12,10 +12,11 @@
     "Test::Declarative" : "lib/Test/Declarative.pm6",
     "Test::Declarative::Callable" : "lib/Test/Declarative/Callable.pm6",
     "Test::Declarative::Expectations" : "lib/Test/Declarative/Expectations.pm6",
-    "Test::Declarative::Result" : "lib/Test/Declarative/Result.pm6"
+    "Test::Declarative::Result" : "lib/Test/Declarative/Result.pm6",
+    "Test::Declarative::Suite" : "lib/Test/Declarative/Suite.pm6"
   },
   "resources" : [ ],
-  "source-url" : "",
+  "source-url" : "https://bitbucket.org/darrenf/p6-test-declarative.git",
   "tags" : [ ],
   "test-depends" : [ ],
   "version" : "0.0.1"
