@@ -168,10 +168,20 @@ method execute() {
 }
 method test-streams() {
     if ($!expectations.stdout) {
-        is($!expectations.stdout, $!result.streams{'stdout'}, self.name ~ ' - stdout');
+        ok(
+            $!expectations.stdout.compare(
+                $!result.streams{'stdout'}
+            ),
+            self.name ~ ' - stdout'
+        );
     }
     if ($!expectations.stderr) {
-        is($!expectations.stderr, $!result.streams{'stderr'}, self.name ~ ' - stderr');
+        ok(
+            $!expectations.stderr.compare(
+                $!result.streams{'stderr'}
+            ),
+            self.name ~ ' - stderr'
+        );
     }
 }
 method test-status() {
@@ -196,53 +206,39 @@ method test-status() {
         }
     }
 }
+
 method test-return-value() {
-    if $!expectations.return-value {
-        my $rv = $!expectations.return-value;
-        if $rv.isa('Test::Declarative::Roughly') {
-            ok(
-                $rv.compare($!result.return-value),
-                sprintf(
-                    '%s - return value (%s %s %s)',
-                    self.name,
-                    $!result.return-value.Str,
-                    $rv.op.name,
-                    $rv.rhs.Str,
-                ),
-            );
-        }
-        else {
-            is-deeply(
-                $!result.return-value,
-                $!expectations.return-value,
-                self.name ~ ' - return value'
-            );
-        }
+    if my $rv = $!expectations.return-value {
+        ok(
+            $rv.compare($!result.return-value),
+            sprintf(
+                '%s - return value (%s %s %s)',
+                self.name,
+                $!result.return-value.Str,
+                $rv.op.name,
+                $rv.rhs.Str,
+            ),
+        );
     }
     elsif $!result.return-value && self.debug {
         diag self.name ~ ' - got untested return value ->';
         diag '   ' ~ $!result.return-value;
     }
-    if $!expectations.mutates {
-        is-deeply(
-            |$!callable.args,
-            $!expectations.mutates,
-            self.name ~ ' - mutates'
+    if my $mut = $!expectations.mutates {
+        ok(
+            $mut.compare(|$!callable.args),
+            sprintf(
+                '%s - mutates',
+                self.name,
+            ),
         );
     }
 }
 
-my class Roughly {
-    has Sub $.op is required;
-    has $.rhs is required;
-    has $!comparison = $!op.assuming(*, $!rhs);
-
-    method compare($got) {
-        return $!comparison($got);
-    }
-}
-sub roughly(Sub $op, Any $rv --> Roughly) is export {
-    return Roughly.new(op => $op, rhs => $rv);
+sub roughly(Sub $op, Any $rv --> Test::Declarative::Expectations::Roughly) is export {
+    return Test::Declarative::Expectations::Roughly.new(
+        op => $op, rhs => $rv
+    );
 }
 
 sub declare(*@tests where {$_.all ~~Hash}) is export {

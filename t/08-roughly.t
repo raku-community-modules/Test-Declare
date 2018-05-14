@@ -16,6 +16,17 @@ class MyTest does Test::Declarative::Suite {
 
     method tests {
         ${
+            name => 'stdout',
+            call => {
+                class => Str,
+                construct => \(value => 'Foo'),
+                method => 'say',
+            },
+            expected => {
+                stdout => roughly(&[~~], rx/^ Fo+ \n$/),
+            },
+        },
+        ${
             name => '3x2 < 10',
             args => \(2),
             expected => {
