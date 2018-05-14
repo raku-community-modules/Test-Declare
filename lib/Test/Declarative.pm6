@@ -123,24 +123,52 @@ method test-status() {
     }
 }
 method test-return-value() {
-    if ($!expectations.return-value) {
-        is-deeply(
-            $!result.return-value,
-            $!expectations.return-value,
-            self.name ~ ' - return value'
-        );
+    if $!expectations.return-value {
+        my $rv = $!expectations.return-value;
+        if $rv.isa('Test::Declarative::Roughly') {
+            ok(
+                $rv.compare($!result.return-value),
+                sprintf(
+                    '%s - return value (%s %s %s)',
+                    self.name,
+                    $!result.return-value.Str,
+                    $rv.op.name,
+                    $rv.rhs.Str,
+                ),
+            );
+        }
+        else {
+            is-deeply(
+                $!result.return-value,
+                $!expectations.return-value,
+                self.name ~ ' - return value'
+            );
+        }
     }
-    elsif ($!result.return-value && self.debug) {
+    elsif $!result.return-value && self.debug {
         diag self.name ~ ' - got untested return value ->';
         diag '   ' ~ $!result.return-value;
     }
-    if ($!expectations.mutates) {
+    if $!expectations.mutates {
         is-deeply(
             |$!callable.args,
             $!expectations.mutates,
             self.name ~ ' - mutates'
         );
     }
+}
+
+my class Roughly {
+    has Sub $.op is required;
+    has $.rhs is required;
+    has $!comparison = $!op.assuming(*, $!rhs);
+
+    method compare($got) {
+        return $!comparison($got);
+    }
+}
+sub roughly(Sub $op, Any $rv --> Roughly) is export {
+    return Roughly.new(op => $op, rhs => $rv);
 }
 
 sub declare(*@tests where {$_.all ~~Hash}) is export {
