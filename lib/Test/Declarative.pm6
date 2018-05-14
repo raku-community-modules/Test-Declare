@@ -152,7 +152,7 @@ has $!result = Test::Declarative::Result.new();
 
 method execute() {
     $!callable.args = $!args if $!args;
-    diag sprintf('calling %s.%s', $!callable.class, $!callable.method) if self.debug;
+    diag sprintf('calling %s.%s', $!callable.class.^name, $!callable.method) if self.debug;
     try {
         CATCH {
             default {
