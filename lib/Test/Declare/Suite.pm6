@@ -1,8 +1,8 @@
 use v6.c;
 
-use Test::Declarative;
+use Test::Declare;
 
-role Test::Declarative::Suite {
+role Test::Declare::Suite {
     method class { … }
     method method { … }
     method tests { … }
@@ -23,14 +23,14 @@ role Test::Declarative::Suite {
 
 =head1 NAME
 
-Test::Declarative::Suite
+Test::Declare::Suite
 
 =head1 SYNOPSIS
 
-    use Test::Declarative::Suite;
+    use Test::Declare::Suite;
     use Module::Under::Test;
 
-    class MyTest does Test::Declarative::Suite {
+    class MyTest does Test::Declare::Suite {
         method class { Module::Under::Test }
         method method { 'some-method' }
         method construct { \(some => 'value') }
@@ -49,7 +49,7 @@ Test::Declarative::Suite
 
     MyTest.new.run-me;
 
-Test::Declarative::Suite is a helper role role which enables bundling of
+Test::Declare::Suite is a helper role role which enables bundling of
 multiple tests that operate on the same callable, to reduce repetition.
 
 When consuming the role, you must implement methods called C<class>,

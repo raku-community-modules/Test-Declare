@@ -1,6 +1,6 @@
 use v6.c;
 
-use Test::Declarative;
+use Test::Declare;
 use lib 't/lib';
 use TDHelpers;
 

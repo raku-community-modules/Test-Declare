@@ -3,12 +3,12 @@
 NAME
 ====
 
-Test::Declarative - Declare common test scenarios as data.
+Test::Declare - Declare common test scenarios as data.
 
 SYNOPSIS
 ========
 
-    use Test::Declarative;
+    use Test::Declare;
 
     use Module::Under::Test;
 
@@ -54,7 +54,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-Test::Declarative is an opinionated framework for writing tests without writing (much) code. The author viscerally hates bugs and strongly believes in the value of tests. Since most tests are code, they are susceptible to bugs, and so this module provides a way to express a wide variety of common testing scenarios purely in a declarative way.
+Test::Declare is an opinionated framework for writing tests without writing (much) code. The author viscerally hates bugs and strongly believes in the value of tests. Since most tests are code, they are susceptible to bugs, and so this module provides a way to express a wide variety of common testing scenarios purely in a declarative way.
 
 USAGE
 =====

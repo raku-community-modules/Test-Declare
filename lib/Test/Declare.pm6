@@ -1,15 +1,15 @@
 use v6.c;
-unit class Test::Declarative:ver<0.0.1>;
+unit class Test::Declare:ver<0.0.1>:auth<darrenf "81590+darrenf@users.noreply.github.com">;
 
 =begin pod
 
 =head1 NAME
 
-Test::Declarative - Declare common test scenarios as data.
+Test::Declare - Declare common test scenarios as data.
 
 =head1 SYNOPSIS
 
-    use Test::Declarative;
+    use Test::Declare;
 
     use Module::Under::Test;
 
@@ -54,7 +54,7 @@ Test::Declarative - Declare common test scenarios as data.
 
 =head1 DESCRIPTION
 
-Test::Declarative is an opinionated framework for writing tests without writing (much) code.
+Test::Declare is an opinionated framework for writing tests without writing (much) code.
 The author viscerally hates bugs and strongly believes in the value of tests. Since most tests
 are code, they are susceptible to bugs, and so this module provides a way to express a wide
 variety of common testing scenarios purely in a declarative way.
@@ -136,9 +136,9 @@ This library is free software; you can redistribute it and/or modify it under th
 use IO::Capture::Simple;
 use Test;
 
-use Test::Declarative::Callable;
-use Test::Declarative::Expectations;
-use Test::Declarative::Result;
+use Test::Declare::Callable;
+use Test::Declare::Expectations;
+use Test::Declare::Result;
 
 has Str $.name is required;
 has %.expected is required;
@@ -146,9 +146,9 @@ has %.call is required;
 has Capture $.args;
 has Bool $.debug = False;
 
-has $!callable = Test::Declarative::Callable.new(|self.call);
-has $!expectations = Test::Declarative::Expectations.new(|self.expected);
-has $!result = Test::Declarative::Result.new();
+has $!callable = Test::Declare::Callable.new(|self.call);
+has $!expectations = Test::Declare::Expectations.new(|self.expected);
+has $!result = Test::Declare::Result.new();
 
 method execute() {
     $!callable.args = $!args if $!args;
@@ -235,8 +235,8 @@ method test-return-value() {
     }
 }
 
-sub roughly(Sub $op, Any $rv --> Test::Declarative::Expectations::Roughly) is export {
-    return Test::Declarative::Expectations::Roughly.new(
+sub roughly(Sub $op, Any $rv --> Test::Declare::Expectations::Roughly) is export {
+    return Test::Declare::Expectations::Roughly.new(
         op => $op, rhs => $rv
     );
 }
@@ -244,7 +244,7 @@ sub roughly(Sub $op, Any $rv --> Test::Declarative::Expectations::Roughly) is ex
 sub declare(*@tests where {$_.all ~~Hash}) is export {
     plan @tests.Int;
     for @tests -> %test {
-        my $td = Test::Declarative.new(|%test);
+        my $td = Test::Declare.new(|%test);
         subtest $td.name => sub {
             plan $td.expected.Int;
             $td.execute();

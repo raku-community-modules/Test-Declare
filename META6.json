@@ -1,4 +1,5 @@
 {
+  "auth" : "darrenf \"81590+darrenf@users.noreply.github.com\"",
   "authors" : [
     "Darren Foreman"
   ],
@@ -6,14 +7,14 @@
   "depends" : [ ],
   "description" : "Declare common test scenarios as data.",
   "license" : "Artistic-2.0",
-  "name" : "Test::Declarative",
+  "name" : "Test::Declare",
   "perl" : "6.c",
   "provides" : {
-    "Test::Declarative" : "lib/Test/Declarative.pm6",
-    "Test::Declarative::Callable" : "lib/Test/Declarative/Callable.pm6",
-    "Test::Declarative::Expectations" : "lib/Test/Declarative/Expectations.pm6",
-    "Test::Declarative::Result" : "lib/Test/Declarative/Result.pm6",
-    "Test::Declarative::Suite" : "lib/Test/Declarative/Suite.pm6"
+    "Test::Declare" : "lib/Test/Declare.pm6",
+    "Test::Declare::Callable" : "lib/Test/Declare/Callable.pm6",
+    "Test::Declare::Expectations" : "lib/Test/Declare/Expectations.pm6",
+    "Test::Declare::Result" : "lib/Test/Declare/Result.pm6",
+    "Test::Declare::Suite" : "lib/Test/Declare/Suite.pm6"
   },
   "resources" : [ ],
   "source-url" : "https://bitbucket.org/darrenf/p6-test-declarative.git",

@@ -1,9 +1,9 @@
 use v6.c;
-use Test::Declarative::Suite;
+use Test::Declare::Suite;
 use lib 't/lib';
 use TDHelpers;
 
-class MyTest does Test::Declarative::Suite {
+class MyTest does Test::Declare::Suite {
     method class { T::Math }
     method method { 'multiply' }
     method construct { \( num => 3 ) }

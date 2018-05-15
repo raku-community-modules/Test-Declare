@@ -1,18 +1,20 @@
 use v6.c;
-use Test::Declarative;
-use Test::Declarative::Suite;
+use Test::Declare;
+use Test::Declare::Suite;
 use lib 't/lib';
 use TDHelpers;
 
 my class Numbers {
     method five { 5 }
     method twelve { 12 }
+    method incr(Int $n is rw) { $n++ }
 }
 
-class MyTest does Test::Declarative::Suite {
+class MyTest does Test::Declare::Suite {
     method class { T::Math }
     method method { 'multiply' }
     method construct { \( num => 3 ) }
+    my $n = 3;
 
     method tests {
         ${
@@ -27,21 +29,26 @@ class MyTest does Test::Declarative::Suite {
             },
         },
         ${
-            name => '3x2 < 10',
+            name => 'mutation',
+            call => {
+                class => Numbers,
+                method => 'incr',
+            },
+            args => \($n),
+            expected => {
+                # "$n will be greater than 3"
+                mutates => roughly(&[>], 3),
+            },
+        },
+        ${
+            name => 'return',
             args => \(2),
             expected => {
                 return-value => roughly(&[<], 10),
             },
         },
         ${
-            name => '3x4 > 10',
-            args => \(4),
-            expected => {
-                return-value => roughly(&[>], 10),
-            },
-        },
-        ${
-            name => '5 is in 1..10',
+            name => 'seq',
             call => {
                 class => Numbers,
                 method => 'five',
@@ -51,7 +58,7 @@ class MyTest does Test::Declarative::Suite {
             },
         },
         ${
-            name => '12 is not in 1..10',
+            name => 'negative seq',
             call => {
                 class => Numbers,
                 method => 'twelve',
