@@ -21,7 +21,7 @@
     "Test::Declare::Suite" : "lib/Test/Declare/Suite.pm6"
   },
   "resources" : [ ],
-  "source-url" : "https://bitbucket.org/darrenf/p6-test-declarative.git",
+  "source-url" : "https://github.com/darrenf/p6-test-declare.git",
   "tags" : [ ],
   "test-depends" : [ ],
   "version" : "0.0.1"
