@@ -1,4 +1,5 @@
 /blib/
+*.swp
 /src/*.o
 /src/Makefile
 /.panda-work
