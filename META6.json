@@ -4,7 +4,10 @@
     "Darren Foreman"
   ],
   "build-depends" : [ ],
-  "depends" : [ ],
+  "depends" : [
+    "IO::Capture::Simple",
+    "Test"
+  ],
   "description" : "Declare common test scenarios as data.",
   "license" : "Artistic-2.0",
   "name" : "Test::Declare",

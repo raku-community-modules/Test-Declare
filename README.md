@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/darrenf/p6-test-declarative.svg?branch=master)](https://travis-ci.org/darrenf/p6-test-declarative)
+[![Build Status](https://travis-ci.org/darrenf/p6-test-declare.svg?branch=master)](https://travis-ci.org/darrenf/p6-test-declare)
 
 NAME
 ====
