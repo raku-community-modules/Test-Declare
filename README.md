@@ -5,6 +5,11 @@ NAME
 
 Test::Declare - Declare common test scenarios as data.
 
+CAVEAT
+------
+
+The author is a novice at Perl 6. Please be nice if you've stumbled across this and have opinions.
+
 SYNOPSIS
 ========
 
@@ -46,6 +51,7 @@ SYNOPSIS
             },
             args => \(multiplicand => 8),
             expected => {
+                # requires Test::Declare::Comparisons
                 return-value => roughly(&[>], 10),
             },
         },
@@ -54,7 +60,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-Test::Declare is an opinionated framework for writing tests without writing (much) code. The author viscerally hates bugs and strongly believes in the value of tests. Since most tests are code, they are susceptible to bugs, and so this module provides a way to express a wide variety of common testing scenarios purely in a declarative way.
+Test::Declare is an opinionated framework for writing tests without writing (much) code. The author hates bugs and strongly believes in the value of tests. Since most tests are code, they themselves are susceptible to bugs; this module provides a way to express a wide variety of common testing scenarios purely in a declarative way.
 
 USAGE
 =====
@@ -109,9 +115,19 @@ Strings against which the method's output/error streams are compared, using `eqv
 SEE ALSO
 ========
 
-[Test::Declare::Comparisons](Test::Declare::Comparisons) - for fuzzy matching including some naive/rudimentary attempts at copying the [Test::Deep](Test::Deep) interface where Perl 6 does not have it builtin.
+Elsewhere in this distribution:
 
-[Test::Declare::Suite](Test::Declare::Suite) - for a role which bundles tests together against a common class/method, to reduce repetition.
+  * [Test::Declare::Comparisons](Test::Declare::Comparisons) - for fuzzy matching including some naive/rudimentary attempts at copying the [Test::Deep](Test::Deep) interface where Perl 6 does not have it builtin.
+
+  * [Test::Declare::Suite](Test::Declare::Suite) - for a role which bundles tests together against a common class/method, to reduce repetition.
+
+Used by the code here:
+
+  * [Test](Test)
+
+  * [IO::Capture::Simple](IO::Capture::Simple)
+
+  * Perl 6
 
 AUTHOR
 ======
