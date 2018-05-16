@@ -61,7 +61,7 @@ variety of common testing scenarios purely in a declarative way.
 
 =head1 USAGE
 
-Direct usage of this module is via the exported subroutines C<declare> and, maybe, C<roughly>.
+Direct usage of this module is via the exported subroutine C<declare>.
 
 =head2 declare(${ … }, ${ … })
 
@@ -107,19 +107,13 @@ C<lives> and C<dies> are booleans, expressing simply whether the code should wor
 
 Strings against which the method's output/error streams are compared, using C<eqv> (i.e. not a regex).
 
-=head2 roughly
+=head1 SEE ALSO
 
-If an exact comparison doesn't suffice for C<return-value>, you can use C<roughly> to
-change the test behaviour to something more fuzzy. The syntax is:
+L<Test::Declare::Comparisons> - for fuzzy matching including some naive/rudimentary
+attempts at copying the L<Test::Deep> interface where Perl 6 does not have it builtin.
 
-    return-value => roughly($operator, $right-hand-side)
-
-For example:
-
-    # I don't know what the value is, only that it's less than 10
-    return-value => roughly(&[<], 10),
-
-C<$operator> is typically intended to be one of the builtin infix operators but any L<Sub> which takes 2 positional arguments should do.
+L<Test::Declare::Suite> - for a role which bundles tests together against a common
+class/method, to reduce repetition.
 
 =head1 AUTHOR
 
