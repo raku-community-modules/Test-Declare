@@ -1,5 +1,6 @@
 use v6.c;
 use Test::Declare;
+use Test::Declare::Comparisons;
 use Test::Declare::Suite;
 use lib 't/lib';
 use TDHelpers;
@@ -11,27 +12,13 @@ my class Numbers {
 }
 
 class MyTest does Test::Declare::Suite {
-    method class { T::Math }
-    method method { 'multiply' }
-    method construct { \( num => 3 ) }
+    method class { Numbers }
     my $n = 3;
 
     method tests {
         ${
-            name => 'stdout',
-            call => {
-                class => Str,
-                construct => \(value => 'Foo'),
-                method => 'say',
-            },
-            expected => {
-                stdout => roughly(&[~~], rx/^ Fo+ \n$/),
-            },
-        },
-        ${
             name => 'mutation',
             call => {
-                class => Numbers,
                 method => 'incr',
             },
             args => \($n),
@@ -41,16 +28,8 @@ class MyTest does Test::Declare::Suite {
             },
         },
         ${
-            name => 'return',
-            args => \(2),
-            expected => {
-                return-value => roughly(&[<], 10),
-            },
-        },
-        ${
             name => 'seq',
             call => {
-                class => Numbers,
                 method => 'five',
             },
             expected => {
@@ -60,11 +39,43 @@ class MyTest does Test::Declare::Suite {
         ${
             name => 'negative seq',
             call => {
-                class => Numbers,
                 method => 'twelve',
             },
             expected => {
                 return-value => roughly(&[!~~], 1..10),
+            },
+        },
+        ${
+            name => 'subhashof',
+            call => {
+                class => Hash,
+                construct => \({foo => 1, bar => 2}),
+                method => 'clone',
+            },
+            expected => {
+                return-value => roughly(&[subhashof], {foo => 1, bar => 2, quux => 3}),
+            },
+        },
+        ${
+            name => 'infix superhashof',
+            call => {
+                class => Hash,
+                construct => \({foo => 1, bar => 2}),
+                method => 'clone',
+            },
+            expected => {
+                return-value => roughly(&[superhashof], {foo => 1}),
+            },
+        },
+        ${
+            name => 'Test::Deep style superhashof',
+            call => {
+                class => Hash,
+                construct => \({foo => 1, bar => 2}),
+                method => 'clone',
+            },
+            expected => {
+                return-value => superhashof({foo => 1}),
             },
         },
     }

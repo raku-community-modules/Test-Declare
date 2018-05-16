@@ -209,16 +209,16 @@ method test-status() {
 
 method test-return-value() {
     if my $rv = $!expectations.return-value {
-        ok(
-            $rv.compare($!result.return-value),
-            sprintf(
-                '%s - return value (%s %s %s)',
-                self.name,
+        my $test-description = sprintf('%s - return value', self.name);
+        if self.debug {
+            $test-description ~= sprintf(
+                ' (%s %s %s)',
                 $!result.return-value.Str,
                 $rv.op.name,
                 $rv.rhs.Str,
-            ),
-        );
+            );
+        }
+        ok($rv.compare($!result.return-value),$test-description);
     }
     elsif $!result.return-value && self.debug {
         diag self.name ~ ' - got untested return value ->';
@@ -233,12 +233,6 @@ method test-return-value() {
             ),
         );
     }
-}
-
-sub roughly(Sub $op, Any $rv --> Test::Declare::Expectations::Roughly) is export {
-    return Test::Declare::Expectations::Roughly.new(
-        op => $op, rhs => $rv
-    );
 }
 
 sub declare(*@tests where {$_.all ~~Hash}) is export {

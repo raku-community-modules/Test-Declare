@@ -3,10 +3,12 @@ use v6.c;
 use Test::Declare;
 
 role Test::Declare::Suite {
-    method class { … }
-    method method { … }
+    has $!errstr = q|must declare '%s' either in call or as a method|;
+
+    method class { die sprintf($!errstr, 'class') }
+    method method { die sprintf($!errstr, 'method') }
     method tests { … }
-    method construct returns Capture { … }
+    method construct returns Capture { \() }
 
     method run-me {
         my @tests = self.tests;
