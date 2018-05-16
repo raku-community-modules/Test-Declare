@@ -7,6 +7,11 @@ unit class Test::Declare:ver<0.0.1>:auth<darrenf "81590+darrenf@users.noreply.gi
 
 Test::Declare - Declare common test scenarios as data.
 
+=head2 CAVEAT
+
+The author is a novice at Perl 6. Please be nice if you've stumbled across this and
+have opinions.
+
 =head1 SYNOPSIS
 
     use Test::Declare;
@@ -47,6 +52,7 @@ Test::Declare - Declare common test scenarios as data.
             },
             args => \(multiplicand => 8),
             expected => {
+                # requires Test::Declare::Comparisons
                 return-value => roughly(&[>], 10),
             },
         },
@@ -55,9 +61,9 @@ Test::Declare - Declare common test scenarios as data.
 =head1 DESCRIPTION
 
 Test::Declare is an opinionated framework for writing tests without writing (much) code.
-The author viscerally hates bugs and strongly believes in the value of tests. Since most tests
-are code, they are susceptible to bugs, and so this module provides a way to express a wide
-variety of common testing scenarios purely in a declarative way.
+The author hates bugs and strongly believes in the value of tests. Since most tests
+are code, they themselves are susceptible to bugs; this module provides a way to express
+a wide variety of common testing scenarios purely in a declarative way.
 
 =head1 USAGE
 
@@ -109,15 +115,25 @@ Strings against which the method's output/error streams are compared, using C<eq
 
 =head1 SEE ALSO
 
-L<Test::Declare::Comparisons> - for fuzzy matching including some naive/rudimentary
+Elsewhere in this distribution:
+
+=item L<Test::Declare::Comparisons> - for fuzzy matching including some naive/rudimentary
 attempts at copying the L<Test::Deep> interface where Perl 6 does not have it builtin.
 
-L<Test::Declare::Suite> - for a role which bundles tests together against a common
+=item L<Test::Declare::Suite> - for a role which bundles tests together against a common
 class/method, to reduce repetition.
+
+Used by the code here:
+
+=item L<Test>
+
+=item L<IO::Capture::Simple>
+
+=item Perl 6
 
 =head1 AUTHOR
 
-Darren Foreman <darren.s.foreman@gmail.com>
+Darren Foreman <81590+darrenf@users.noreply.github.com>
 
 =head1 COPYRIGHT AND LICENSE
 

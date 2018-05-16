@@ -59,7 +59,7 @@ Test::Declare is an opinionated framework for writing tests without writing (muc
 USAGE
 =====
 
-Direct usage of this module is via the exported subroutines `declare` and, maybe, `roughly`.
+Direct usage of this module is via the exported subroutine `declare`.
 
 declare(${ … }, ${ … })
 -----------------------
@@ -106,24 +106,17 @@ The return value of the method, which will be compared to the actual return valu
 
 Strings against which the method's output/error streams are compared, using `eqv` (i.e. not a regex).
 
-roughly
--------
+SEE ALSO
+========
 
-If an exact comparison doesn't suffice for `return-value`, you can use `roughly` to change the test behaviour to something more fuzzy. The syntax is:
+[Test::Declare::Comparisons](Test::Declare::Comparisons) - for fuzzy matching including some naive/rudimentary attempts at copying the [Test::Deep](Test::Deep) interface where Perl 6 does not have it builtin.
 
-    return-value => roughly($operator, $right-hand-side)
-
-For example:
-
-    # I don't know what the value is, only that it's less than 10
-    return-value => roughly(&[<], 10),
-
-`$operator` is typically intended to be one of the builtin infix operators but any [Sub](Sub) which takes 2 positional arguments should do.
+[Test::Declare::Suite](Test::Declare::Suite) - for a role which bundles tests together against a common class/method, to reduce repetition.
 
 AUTHOR
 ======
 
-Darren Foreman <darren.s.foreman@gmail.com>
+Darren Foreman <81590+darrenf@users.noreply.github.com>
 
 COPYRIGHT AND LICENSE
 =====================
