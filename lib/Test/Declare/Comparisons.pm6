@@ -36,6 +36,10 @@ sub superhashof(Hash $right --> Roughly) is export {
     return roughly(&[superhashof], $right);
 }
 
+sub subhashof(Hash $right --> Roughly) is export {
+    return roughly(&[subhashof], $right);
+}
+
 =begin pod
 
 =head1 NAME
