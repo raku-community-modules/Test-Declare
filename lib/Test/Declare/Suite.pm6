@@ -51,7 +51,7 @@ Test::Declare::Suite
 
     MyTest.new.run-me;
 
-Test::Declare::Suite is a helper role role which enables bundling of
+Test::Declare::Suite is a helper role which enables bundling of
 multiple tests that operate on the same callable, to reduce repetition.
 
 When consuming the role, you must implement methods called C<class>,
