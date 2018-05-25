@@ -1,5 +1,5 @@
 use v6.c;
-unit class Test::Declare:ver<0.0.1>:auth<darrenf "81590+darrenf@users.noreply.github.com">;
+unit class Test::Declare:ver<0.0.2>:auth<github:darrenf>;
 
 =begin pod
 
