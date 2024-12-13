@@ -1,6 +1,6 @@
-use v6.c;
 use Test::Declare::Suite;
-use lib 't/lib';
+
+use lib $*PROGRAM.sibling("lib");
 use TDHelpers;
 
 class MyTest does Test::Declare::Suite {
@@ -50,4 +50,6 @@ class MyTest does Test::Declare::Suite {
     }
 }
 
-MyTest.new().run-me();
+MyTest.new.run-me;
+
+# vim: expandtab shiftwidth=4

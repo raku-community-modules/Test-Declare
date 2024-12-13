@@ -1,5 +1,3 @@
-use v6.c;
-
 class T::Mutation {
     method increment-all(Array $arr) {
         $arr.map: *++;
@@ -55,3 +53,5 @@ class T::NoConstruct {
         }
     }
 }
+
+# vim: expandtab shiftwidth=4

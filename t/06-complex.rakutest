@@ -1,6 +1,6 @@
-use v6.c;
 use Test::Declare;
-use lib 't/lib';
+
+use lib $*PROGRAM.sibling("lib");
 use TDHelpers;
 
 declare(
@@ -16,3 +16,5 @@ declare(
         },
     },
 );
+
+# vim: expandtab shiftwidth=4

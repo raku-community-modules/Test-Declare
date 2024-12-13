@@ -1,6 +1,9 @@
-Revision history for Test-Declare
+Revision history for Test::Declare
 
 {{$NEXT}}
+    - Modernized pod, file extensions, tests
+    - Added CI badge for each OS
+    - First release as a Raku Community module
 
 0.0.2  2018-05-25T10:38:29+01:00
     - Added "Testing" tag

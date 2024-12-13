@@ -1,8 +1,8 @@
-use v6.c;
 use Test::Declare;
 use Test::Declare::Comparisons;
 use Test::Declare::Suite;
-use lib 't/lib';
+
+use lib $*PROGRAM.sibling("lib");
 use TDHelpers;
 
 my class Numbers {
@@ -82,3 +82,5 @@ class MyTest does Test::Declare::Suite {
 }
 
 MyTest.new.run-me;
+
+# vim: expandtab shiftwidth=4
