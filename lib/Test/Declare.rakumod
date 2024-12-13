@@ -221,12 +221,12 @@ String name of the method to call.
 
 =item2 construct
 
-If required, a L<Capture|https://docs.perl6.org/type/Capture.html> of
+If required, a L<Capture|https://docs.raku.org/type/Capture.html> of
 the arguments to the class's C<new> method.
 
 =item1 args
 
-If required, a L<Capture|https://docs.perl6.org/type/Capture.html> of
+If required, a L<Capture|https://docs.raku.org/type/Capture.html> of
 the arguments to the instance's method.
 
 =item1 expected

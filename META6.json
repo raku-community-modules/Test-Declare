@@ -1,29 +1,32 @@
 {
-  "auth" : "zef:raku-community-modules",
-  "authors" : [
+  "auth": "zef:raku-community-modules",
+  "authors": [
     "Darren Foreman"
   ],
-  "build-depends" : [ ],
-  "depends" : [
+  "build-depends": [
+  ],
+  "depends": [
     "IO::Capture::Simple"
   ],
-  "description" : "Declare common test scenarios as data.",
-  "license" : "Artistic-2.0",
-  "name" : "Test::Declare",
-  "perl" : "6.c",
-  "provides" : {
-    "Test::Declare" : "lib/Test/Declare.rakumod",
-    "Test::Declare::Callable" : "lib/Test/Declare/Callable.rakumod",
-    "Test::Declare::Comparisons" : "lib/Test/Declare/Comparisons.rakumod",
-    "Test::Declare::Expectations" : "lib/Test/Declare/Expectations.rakumod",
-    "Test::Declare::Result" : "lib/Test/Declare/Result.rakumod",
-    "Test::Declare::Suite" : "lib/Test/Declare/Suite.rakumod"
+  "description": "Declare common test scenarios as data.",
+  "license": "Artistic-2.0",
+  "name": "Test::Declare",
+  "perl": "6.c",
+  "provides": {
+    "Test::Declare": "lib/Test/Declare.rakumod",
+    "Test::Declare::Callable": "lib/Test/Declare/Callable.rakumod",
+    "Test::Declare::Comparisons": "lib/Test/Declare/Comparisons.rakumod",
+    "Test::Declare::Expectations": "lib/Test/Declare/Expectations.rakumod",
+    "Test::Declare::Result": "lib/Test/Declare/Result.rakumod",
+    "Test::Declare::Suite": "lib/Test/Declare/Suite.rakumod"
   },
-  "resources" : [ ],
-  "source-url" : "https://github.com/darrenf/p6-test-declare.git",
-  "tags" : [
+  "resources": [
+  ],
+  "source-url": "https://github.com/raku-community-modules/Test-Declare.git",
+  "tags": [
     "Testing"
   ],
-  "test-depends" : [ ],
-  "version" : "0.0.2"
+  "test-depends": [
+  ],
+  "version": "0.0.2"
 }
