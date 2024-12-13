@@ -1,6 +1,8 @@
 Revision history for Test::Declare
 
 {{$NEXT}}
+
+0.0.3  2024-12-13T13:00:58+01:00
     - Modernized pod, file extensions, tests
     - Added CI badge for each OS
     - First release as a Raku Community module
